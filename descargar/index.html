@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#1b110a" />
+<title>Descargar Mis Arcas para Android</title>
+<meta name="description" content="Mis Arcas: gastos, deudas y cuotas compartidas entre Casas. Descargá la app para Android." />
+<meta property="og:title" content="Mis Arcas para Android" />
+<meta property="og:description" content="Gastos, deudas y cuotas compartidas entre Casas. Tus datos quedan cifrados en tu teléfono." />
+<meta property="og:image" content="https://misarcas.github.io/icons/icon-512.png" />
+<link rel="icon" href="../icons/icon-192.png" />
+<style>
+  :root{color-scheme:dark}
+  *{box-sizing:border-box}
+  body{margin:0;min-height:100vh;font-family:Georgia,"Times New Roman",serif;color:#f1dca2;line-height:1.45;
+    background:radial-gradient(ellipse at 50% 0%,#3a240e 0%,#160d06 60%,#0b0603 100%) fixed}
+  main{max-width:520px;margin:0 auto;padding:28px 18px 40px;text-align:center}
+  img.crest{width:104px;height:104px;border-radius:22px;box-shadow:0 8px 22px rgba(0,0,0,.6)}
+  h1{margin:14px 0 2px;font-size:2rem;letter-spacing:.08em;font-variant:small-caps;color:#f6df93;text-shadow:0 2px 3px #000}
+  .sub{margin:0 0 18px;color:#e7d3a6;font-style:italic}
+  .dl{display:inline-flex;flex-direction:column;align-items:center;gap:2px;padding:14px 28px;border-radius:12px;text-decoration:none;
+    color:#fff3c4;background:linear-gradient(#a92f39,#6a161d);border:2px solid #d9b25a;box-shadow:0 6px 16px rgba(0,0,0,.55);
+    font-size:1.25rem;letter-spacing:.1em;font-variant:small-caps;font-weight:bold}
+  .dl small{font-size:.8rem;letter-spacing:.02em;font-variant:normal;font-weight:normal;color:#ffd9cf}
+  .card{margin:22px 0 0;padding:16px 18px;text-align:left;border-radius:12px;color:#2a1a0c;
+    background:linear-gradient(#f2dc98,#e6d3a2);border:2px solid #a07a2c;box-shadow:inset 0 0 0 1px #fff3c4,0 6px 16px rgba(0,0,0,.5)}
+  .card h2{margin:0 0 8px;font-size:1.05rem;letter-spacing:.08em;font-variant:small-caps;color:#5a1118}
+  ol{margin:0;padding-left:1.3em}
+  li{margin:6px 0}
+  b{color:#3b1a0c}
+  .fine{margin:16px 4px 0;font-size:.9rem;color:#c9b388}
+  .fine code{font-size:.75rem;word-break:break-all;color:#e6d3ae}
+  a.web{color:#f0cc63}
+</style>
+</head>
+<body>
+<main>
+  <img class="crest" src="../icons/icon-192.png" alt="" />
+  <h1>Mis Arcas</h1>
+  <p class="sub">Gastos, deudas y cuotas compartidas entre Casas</p>
+  <a class="dl" id="dl" href="../MisArcas.apk" download="MisArcas.apk">Descargar para Android<small id="meta">archivo APK</small></a>
+  <section class="card">
+    <h2>Cómo instalarla</h2>
+    <ol>
+      <li>Tocá <b>Descargar</b> y esperá a que baje el archivo <b>MisArcas.apk</b>.</li>
+      <li>Abrilo desde la notificación o desde <b>Archivos → Descargas</b>.</li>
+      <li>Si Android dice que no permite instalar apps de esta fuente, tocá <b>Configuración</b> y activá <b>Permitir de esta fuente</b> (para Chrome, WhatsApp o Archivos, según desde dónde la abras). Después volvé y tocá <b>Instalar</b>.</li>
+      <li>Si aparece <b>Play Protect</b> avisando que es una app desconocida, tocá <b>Más detalles → Instalar de todas formas</b>. Pasa porque la app no está en Play Store.</li>
+      <li>Listo. Las novedades llegan solas: en el inicio, <b>Buscar actualizaciones</b>.</li>
+    </ol>
+  </section>
+  <section class="card">
+    <h2>Tus datos</h2>
+    <p style="margin:0">Todo queda en tu teléfono, cifrado con tu PIN. Nada se sube a ningún servidor y nadie más puede verlo.</p>
+  </section>
+  <p class="fine">¿iPhone o PC? Usá la <a class="web" href="../">versión web</a>.</p>
+  <p class="fine" id="sum"></p>
+</main>
+<script>
+  fetch('../apk.json', { cache: 'no-store' }).then(function (r) { return r.ok ? r.json() : null; }).then(function (a) {
+    if (!a) return;
+    document.getElementById('meta').textContent = 'versión ' + a.version + ' · ' + (a.size / 1048576).toFixed(1).replace('.', ',') + ' MB';
+    document.getElementById('sum').innerHTML = 'SHA-256 del archivo: <code>' + a.sha256 + '</code>';
+  }).catch(function () {});
+</script>
+</body>
+</html>
